@@ -1,5 +1,5 @@
 {
-  "name": "@tomcumming/ids",
+  "name": "parse-ids",
   "version": "0.0.1",
   "description": "Parser for Ideographic Description Sequences",
   "main": "lib/ids.js",
@@ -9,6 +9,12 @@
   "scripts": {
     "test": "node test/test.js"
   },
+  "files": [
+    "LICENSE.txt",
+    "tsconfig.json",
+    "test",
+    "lib"
+  ],
   "keywords": [
     "CJK",
     "IDS",
@@ -19,5 +25,12 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/tomcumming/parse-ids"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomcumming/parse-ids.git"
+  }
 }
