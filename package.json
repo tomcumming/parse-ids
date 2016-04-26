@@ -1,0 +1,23 @@
+{
+  "name": "@tomcumming/ids",
+  "version": "0.0.1",
+  "description": "Parser for Ideographic Description Sequences",
+  "main": "lib/ids.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "CJK",
+    "IDS",
+    "chise"
+  ],
+  "author": "Tom Cumming <mail@tomcumming.co.uk>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {}
+}
