@@ -101,6 +101,75 @@ export interface Overlaid {
 }
 
 /**
+ * Return immediate children of an IDS node
+ * @param ids The node to search
+ * @returns List of child nodes
+ */
+export function children(ids: IDS): IDS[] {
+
+  switch (ids.type) {
+    case '⿰': {
+      const leftToRight = <LeftToRight>ids;
+      return [leftToRight.left, leftToRight.right];
+    }
+    case '⿱': {
+      const aboveToBelow = <AboveToBelow>ids;
+      return [aboveToBelow.above, aboveToBelow.below];
+    }
+    case '⿲': {
+      const leftToMiddleAndRight = <LeftToMiddleAndRight>ids;
+      return [
+        leftToMiddleAndRight.left,
+        leftToMiddleAndRight.middle,
+        leftToMiddleAndRight.right
+      ];
+    }
+    case '⿳': {
+      const aboveToMiddleAndBelow = <AboveToMiddleAndBelow>ids;
+      return [
+        aboveToMiddleAndBelow.above,
+        aboveToMiddleAndBelow.middle,
+        aboveToMiddleAndBelow.below
+      ];
+    }
+    case '⿴': {
+      const fullSurround = <FullSurround>ids;
+      return [fullSurround.outside, fullSurround.inside];
+    }
+    case '⿵': {
+      const surroundsFromAbove = <SurroundFromAbove>ids;
+      return [surroundsFromAbove.outside, surroundsFromAbove.inside];
+    }
+    case '⿶': {
+      const surroundFromBelow = <SurroundFromBelow>ids;
+      return [surroundFromBelow.outside, surroundFromBelow.inside];
+    }
+    case '⿷': {
+      const surroundFromLeft = <SurroundFromLeft>ids;
+      return [surroundFromLeft.outside, surroundFromLeft.inside];
+    }
+    case '⿸': {
+      const surroundFromUpperLeft = <SurroundFromUpperLeft>ids;
+      return [surroundFromUpperLeft.outside, surroundFromUpperLeft.inside];
+    }
+    case '⿹': {
+      const surroundFromUpperRight = <SurroundFromUpperRight>ids;
+      return [surroundFromUpperRight.outside, surroundFromUpperRight.inside];
+    }
+    case '⿺': {
+      const surroundFromLowerLeft = <SurroundFromLowerLeft>ids;
+      return [surroundFromLowerLeft.outside, surroundFromLowerLeft.inside];
+    }
+    case '⿻': {
+      const overlaid = <Overlaid>ids;
+      return [overlaid.back, overlaid.front];
+    }
+    default:
+      return [];
+  }
+}
+
+/**
  * Parse an Ideographic Descrizption Sequences
  * @param str The string to parse (must not contain white space)
  * @returns IDS structure or null if the parse failed
