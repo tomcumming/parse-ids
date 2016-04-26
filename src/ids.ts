@@ -170,6 +170,31 @@ export function children(ids: IDS): IDS[] {
 }
 
 /**
+ * Flatten an IDS tree
+ * @param ids The node to flatten
+ * @returns List of all child nodes (or self)
+ */
+export function flatten(ids: IDS): (Character | HTMLCode)[] {
+  switch (ids.type) {
+    case 'char': return [<Character>ids];
+    case 'html': return [<HTMLCode>ids];
+    case '⿰':
+    case '⿱':
+    case '⿲':
+    case '⿳':
+    case '⿴':
+    case '⿵':
+    case '⿶':
+    case '⿷':
+    case '⿸':
+    case '⿹':
+    case '⿺':
+    case '⿻': return children(ids).map(flatten).reduce((l, r) => l.concat(r), []);
+    default: throw new Error('Invalid type: ' + ids.type);
+  }
+}
+
+/**
  * Parse an Ideographic Descrizption Sequences
  * @param str The string to parse (must not contain white space)
  * @returns IDS structure or null if the parse failed

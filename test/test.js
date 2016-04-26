@@ -1,7 +1,7 @@
-var ids = require('../lib/ids.js');
-var assert = require('assert');
+const ids = require('../lib/ids.js');
+const assert = require('assert');
 
-var parseTestCases = [
+const parseTestCases = [
   {
     src: '⿰⿱畾宐毛',
     target: {
@@ -105,7 +105,7 @@ var parseTestCases = [
 parseTestCases.forEach(tc =>
   assert.deepStrictEqual(ids.parse(tc.src), tc.target));
 
-var childrenTestCases = [
+const childrenTestCases = [
   {
     src: '⿻羊⿱䒑口',
     target: [
@@ -129,3 +129,25 @@ var childrenTestCases = [
 
 childrenTestCases.forEach(tc =>
   assert.deepStrictEqual(ids.children(ids.parse(tc.src)), tc.target));
+
+const flattenTestCases = [
+  {
+    src: '⿻羊⿱䒑口',
+    target: [
+      { type: 'char', char: '羊' },
+      { type: 'char', char: '䒑' },
+      { type: 'char', char: '口' }
+    ]
+  },
+  {
+    src: '⿰⿱畾宐毛',
+    target: [
+      { type: 'char', char: '畾' },
+      { type: 'char', char: '宐' },
+      { type: 'char', char: '毛' }
+    ]
+  }
+];
+
+flattenTestCases.forEach(tc =>
+  assert.deepStrictEqual(ids.flatten(ids.parse(tc.src)), tc.target));
