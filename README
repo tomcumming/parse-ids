@@ -1,3 +1,6 @@
 Ideographic Description Sequence parser
 
-Parses the IDS files provided by the chise project: http://www.chise.org/
+Parses the IDS used within files provided by the chise project: http://www.chise.org/
+
+See also:
+https://en.wikipedia.org/wiki/Chinese_character_description_languages#Ideographic_Description_Sequences
