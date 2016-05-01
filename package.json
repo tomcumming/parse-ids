@@ -1,8 +1,8 @@
 {
   "name": "parse-ids",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Parser for Ideographic Description Sequences",
-  "main": "lib/ids.js",
+  "main": "lib/parse-ids.js",
   "directories": {
     "test": "test"
   },
@@ -15,6 +15,7 @@
     "test",
     "lib"
   ],
+  "typings": "./lib/parse-ids.d.ts",
   "keywords": [
     "CJK",
     "IDS",

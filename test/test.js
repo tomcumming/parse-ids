@@ -1,4 +1,4 @@
-const ids = require('../lib/ids.js');
+const ids = require('../lib/parse-ids.js');
 const assert = require('assert');
 
 const parseTestCases = [
