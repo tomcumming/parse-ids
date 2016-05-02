@@ -1,6 +1,6 @@
 {
   "name": "parse-ids",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Parser for Ideographic Description Sequences",
   "main": "lib/parse-ids.js",
   "directories": {

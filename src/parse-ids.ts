@@ -208,25 +208,25 @@ export function parse(str: string): IDS {
 function parsePart(str: string): { ids: IDS, rest: string } {
   if (str.length === 0) return null;
 
-  const split = strNextChar(str);
-  switch (split.next) {
-    case '&': return parseHTMLCode(split.rest);
-    case '⿰': return parseLeftToRight(split.rest);
-    case '⿱': return parseAboveToBelow(split.rest);
-    case '⿲': return parseLeftToMiddleAndRight(split.rest);
-    case '⿳': return parseAboveToMiddleAndBelow(split.rest);
-    case '⿴': return parseFullSurround(split.rest);
-    case '⿵': return parseSurroundFromAbove(split.rest);
-    case '⿶': return parseSurroundFromBelow(split.rest);
-    case '⿷': return parseSurroundFromLeft(split.rest);
-    case '⿸': return parseSurroundFromUpperLeft(split.rest);
-    case '⿹': return parseSurroundFromUpperRight(split.rest);
-    case '⿺': return parseSurroundFromLowerLeft(split.rest);
-    case '⿻': return parseOverlaid(split.rest);
+  const {next, rest} = nextChar(str);
+  switch (next) {
+    case '&': return parseHTMLCode(rest);
+    case '⿰': return parseLeftToRight(rest);
+    case '⿱': return parseAboveToBelow(rest);
+    case '⿲': return parseLeftToMiddleAndRight(rest);
+    case '⿳': return parseAboveToMiddleAndBelow(rest);
+    case '⿴': return parseFullSurround(rest);
+    case '⿵': return parseSurroundFromAbove(rest);
+    case '⿶': return parseSurroundFromBelow(rest);
+    case '⿷': return parseSurroundFromLeft(rest);
+    case '⿸': return parseSurroundFromUpperLeft(rest);
+    case '⿹': return parseSurroundFromUpperRight(rest);
+    case '⿺': return parseSurroundFromLowerLeft(rest);
+    case '⿻': return parseOverlaid(rest);
     default: // parse single unicode char
       return {
-        ids: { type: 'char', char: split.next },
-        rest: split.rest
+        ids: { type: 'char', char: next },
+        rest: rest
       }
   }
 }
@@ -394,18 +394,12 @@ function parseParts(str: string, count: number): { ids: IDS[], rest: string } {
 }
 
 /**
- * Work around javascript not handling multibyte characters
+ * Helper to split first char from string
  * @param str - Non-empty string to split
- * @returns - object with next and rest
+ * @returns - object with next and rest, or null
  */
-export function strNextChar(str: string): { next: string, rest: string } {
-  const cp = str.codePointAt(0);
-  var l: number = 1;
-  if (cp > 0xffff) l = 2;
-  else l = 1;
-
-  return {
-    next: str.substr(0, l),
-    rest: str.substr(l)
-  }
+export function nextChar(str: string): { next: string, rest: string } {
+  for(const c of str)
+    return { next: c, rest: str.slice(c.length) };
+  return null;
 }

@@ -19,7 +19,7 @@ const stringSplitCases = [
 ];
 
 stringSplitCases.forEach(tc => {
-  assert.deepStrictEqual(ids.strNextChar(tc.src), tc.target);
+  assert.deepStrictEqual(ids.nextChar(tc.src), tc.target);
 });
 
 const parseTestCases = [
