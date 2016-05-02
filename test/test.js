@@ -1,6 +1,27 @@
 const ids = require('../lib/parse-ids.js');
 const assert = require('assert');
 
+const stringSplitCases = [
+  { // 16bit
+    src: '不a',
+    target: {
+      next: '不',
+      rest: 'a'
+    }
+  },
+  { // 32bit
+    src: '𨀉a',
+    target: {
+      next: '𨀉',
+      rest: 'a'
+    }
+  }
+];
+
+stringSplitCases.forEach(tc => {
+  assert.deepStrictEqual(ids.strNextChar(tc.src), tc.target);
+});
+
 const parseTestCases = [
   {
     src: '⿰⿱畾宐毛',

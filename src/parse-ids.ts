@@ -393,17 +393,19 @@ function parseParts(str: string, count: number): { ids: IDS[], rest: string } {
   return { ids: parts, rest: str };
 }
 
-// Work around javascript not handling multibyte strings
-function strNextChar(str: string): { next: string, rest: string } {
-  if ((str.charCodeAt(0) & 0xF800) === 0xD800) {
-    return {
-      next: str.substr(0, 2),
-      rest: str.substr(2)
-    }
-  } else {
-    return {
-      next: str.charAt(0),
-      rest: str.substr(1)
-    }
+/**
+ * Work around javascript not handling multibyte characters
+ * @param str - Non-empty string to split
+ * @returns - object with next and rest
+ */
+export function strNextChar(str: string): { next: string, rest: string } {
+  const cp = str.codePointAt(0);
+  var l: number = 1;
+  if (cp > 0xffff) l = 2;
+  else l = 1;
+
+  return {
+    next: str.substr(0, l),
+    rest: str.substr(l)
   }
 }
